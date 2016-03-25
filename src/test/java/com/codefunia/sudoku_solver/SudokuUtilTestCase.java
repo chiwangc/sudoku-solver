@@ -1,11 +1,15 @@
 package com.codefunia.sudoku_solver;
 
 import static com.codefunia.sudoku_solver.SudokuUtil.toGrid;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import org.junit.Test;
+
+import com.codefunia.sudoku_solver.immutable.SudokuImpl;
 
 public class SudokuUtilTestCase {
 
@@ -23,6 +27,12 @@ public class SudokuUtilTestCase {
 	    assertTrue(Arrays.equals(SudokuTestObject.validGrid1[i], array1[i]));
 	    assertTrue(Arrays.equals(SudokuTestObject.validGrid2[i], array2[i]));
 	}
+    }
+        
+    @Test
+    public void solveShouldGiveTwoSolutions() {
+	Set<Sudoku> solutions = SudokuUtil.solve(SudokuFactory.createSudoku(SudokuTestObject.validGrid5));
+	assertEquals(2, solutions.size());
     }
     
 }
