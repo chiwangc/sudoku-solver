@@ -12,6 +12,19 @@ import com.codefunia.sudoku_solver.SudokuTestObject;
 public class SudokuImplTestCase {
     
     @Test
+    public void insertShouldGiveSameResult() {
+	Sudoku sudoku1 = SudokuImpl.newInstance(SudokuTestObject.validGrid2);
+	
+	char[][] grid2 = sudoku1.getGridCopy();
+	grid2[0][0] = '3';
+	Sudoku sudoku2 = SudokuImpl.newInstance(grid2);	
+	
+	sudoku1 = sudoku1.insert(0, 0, 3);
+	
+	assertEquals(sudoku1, sudoku2);
+    }
+    
+    @Test
     public void getPrintedStringShouldBeEqual() {
 	Sudoku sudoku1 = SudokuImpl.newInstance(SudokuTestObject.validGrid1);
 	assertEquals( "/---+---+---\\\n" 
@@ -43,3 +56,4 @@ public class SudokuImplTestCase {
     }
 
 }
+
